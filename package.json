@@ -1,0 +1,19 @@
+{
+  "name": "food-court-api",
+  "version": "1.0.0",
+  "description": "Backend for an online an online resturant called food court",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GbemigadEngineer/Food-Court-API.git"
+  },
+  "author": "Oluwagbemiga Oduwole",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GbemigadEngineer/Food-Court-API/issues"
+  },
+  "homepage": "https://github.com/GbemigadEngineer/Food-Court-API#readme"
+}
