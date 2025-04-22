@@ -38,6 +38,16 @@ const userSchema = mongoose.Schema(
   { timestamps: true }
 );
 
+
+// Document middleware
+// These are Middlwares that runs before saving the document to the database(pre hook)
+// This middleware used to hash the password before saving it to the database.
+
+userSchema.pre("save", async function(next){
+    
+})
+
+
 // create Model
 const User = mongoose.model("User", userSchema);
 
