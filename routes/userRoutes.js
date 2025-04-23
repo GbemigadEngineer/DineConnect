@@ -1,5 +1,9 @@
 const express = require("express");
-const { getUserController } = require("../controllers/userController");
+const {
+  getUserController,
+  updateUserController,
+  updateUserPasswordController,
+} = require("../controllers/userController");
 const authMiddlewear = require("../middleware/authMiddlewear");
 
 const router = express.Router();
@@ -8,5 +12,13 @@ const router = express.Router();
 
 // GET USER
 router.route("/getUser").get(authMiddlewear, getUserController);
+
+// UPDATE USER PROFILE
+router.route("/updateUser").patch(authMiddlewear, updateUserController);
+
+// UPDATE USER PASSWORD
+router
+  .route("/updatePassword")
+  .post(authMiddlewear, updateUserPasswordController);
 
 module.exports = router;

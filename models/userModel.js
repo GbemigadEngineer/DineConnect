@@ -34,19 +34,19 @@ const userSchema = mongoose.Schema(
       default:
         "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_640.png",
     },
+    answer: {
+      type: String,
+      required: [true, "Answer is required."],
+    },
   },
   { timestamps: true }
 );
-
 
 // Document middleware
 // These are Middlwares that runs before saving the document to the database(pre hook)
 // This middleware used to hash the password before saving it to the database.
 
-userSchema.pre("save", async function(next){
-    
-})
-
+userSchema.pre("save", async function (next) {});
 
 // create Model
 const User = mongoose.model("User", userSchema);
