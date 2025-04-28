@@ -6,6 +6,7 @@ const {
   getAllResturantsController,
   getResturantByIdController,
   deleteResturantController,
+  updateResturantController,
 } = require("../controllers/resturantController");
 const { get } = require("mongoose");
 
@@ -23,6 +24,8 @@ router
   .route("/:id")
   // GET A RESTURANT OR GET RESTURANT BY ID
   .get(getResturantByIdController)
+  // UPDATE RESTURANT BY ID
+  .patch(authMiddleware, updateResturantController)
   // DELETE RESTURANT BY ID
   .delete(authMiddleware, deleteResturantController);
 

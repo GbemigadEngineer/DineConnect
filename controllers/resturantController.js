@@ -201,10 +201,77 @@ const deleteResturantController = async (req, res) => {
   }
 };
 
+// UPDATE RESTURANT CONTROLLER
+const updateResturantController = async (req, res) => {
+  try {
+    // 1. Get the id from the request parameters i.e req.params
+    const { id } = req.params;
+    // 2. Validate the id
+    // 2a. Check if the there is an id provided in the request parameters
+    if (!id) {
+      return res.status(400).json({
+        success: false,
+        message: "Resturant ID is required!",
+      });
+    }
+    // 2b. Check if the id is a valid MongoDB ObjectId
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid Resturant ID!",
+      });
+    }
+    // 2c. Check if  the resturant with that id exists in the database
+    const resturant = await Resturant.findById(id);
+    if (!resturant) {
+      return res.status(404).json({
+        success: false,
+        message: "Resturant not found!",
+      });
+    }
+    // 3. Update the resturant data in the database based on the id and request body
+    const updatedResturant = await Resturant.findByIdAndUpdate(
+      id,
+      {
+        title: req.body.title,
+        imageUrl: req.body.imageUrl,
+        menu: req.body.menu,
+        time: req.body.time,
+        reservations: req.body.reservations,
+        delivery: req.body.delivery,
+        deliveryLocations: req.body.deliveryLocations,
+        isOpen: req.body.isOpen,
+        logoUrl: req.body.logoUrl,
+        rating: req.body.rating,
+        ratingCount: req.body.ratingCount,
+        code: req.body.code,
+        coords: req.body.coords,
+      },
+      { new: true, runValidators: true }
+    );
+
+    // 4. Send response with the data
+    res.status(200).json({
+      success: true,
+      message: "Resturant updated successfully!",
+      data: {
+        updatedResturant,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: "Error in updating resturant!",
+    });
+  }
+};
+
 // export all controllers
 module.exports = {
   createResturantController,
   getAllResturantsController,
   getResturantByIdController,
   deleteResturantController,
+  updateResturantController,
 };
