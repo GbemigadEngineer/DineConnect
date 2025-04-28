@@ -1,4 +1,5 @@
 const Resturant = require("../models/resturantModel");
+const APIFeatures = require("../utils/apiFeatures");
 
 // CREATE RESTURANT CONTROLLER
 const createResturantController = async (req, res) => {
@@ -60,7 +61,37 @@ const createResturantController = async (req, res) => {
   }
 };
 
+// GET ALL RESTURANTS CONTROLLER
+const getAllResturantsController = async (req, res) => {
+  try {
+    // 1. Create a new APIFeatures object and pass the query and queryString to it
+    const features = new APIFeatures(Resturant.find(), req.query)
+      .filter()
+      .sort()
+      .limitFields()
+      .paginate();
+    // 2. Get all resutant data from databse based on the features object
+    const resturants = await features.query;
+    // 3. Send response with the data
+    res.status(200).json({
+      success: true,
+      message: "All resturants fetched successfully!",
+      results: resturants.length,
+      data: {
+        resturants,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: "Error in getting all resturants!",
+    });
+  }
+};
+
 // export all controllers
 module.exports = {
   createResturantController,
+  getAllResturantsController,
 };

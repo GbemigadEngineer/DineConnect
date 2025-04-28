@@ -51,7 +51,7 @@ const resturantSchema = mongoose.Schema(
       longitude: { type: Number },
       longitudeDelta: { type: Number },
       address: { type: String },
-      title: { type: String },
+      title: { type: String }, 
     },
   },
 
