@@ -17,7 +17,7 @@ const categorySchema = mongoose.Schema(
   { timestamps: true }
 );
 // create Model
-const Category = mongoose.model("Category", resturantSchema);
+const Category = mongoose.model("Category", categorySchema);
 
 // export
-module.exports = Category;
+module.exports = Category; 

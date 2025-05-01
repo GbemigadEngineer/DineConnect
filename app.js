@@ -13,6 +13,7 @@ app.use("/api/v1/test", require("./routes/testRoutes"));
 app.use("/api/v1/auth", require("./routes/authRoutes"));
 app.use("/api/v1/user", require("./routes/userRoutes"));
 app.use("/api/v1/resturant", require("./routes/resturantRoutes"));
+app.use("/api/v1/category", require("./routes/categoryRoutes"));
 
 // // Unhandled routes
 // app.all("*", (req, res, next) => {

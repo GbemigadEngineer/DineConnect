@@ -12,10 +12,13 @@ connectDB(); // connect  to the database
 
 // Server connection
 
-// port 
+// port
 const port = process.env.PORT || 8080; //short circuting
 
 // listen connect to the server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`.red.bgBlue);
 });
+
+
+
