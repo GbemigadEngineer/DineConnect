@@ -3,6 +3,7 @@ const express = require("express");
 const authMiddleware = require("../middleware/authMiddlewear");
 const {
   createCategoryController,
+  getAllCategoriesController,
 } = require("../controllers/categoryController");
 
 const router = express.Router();
@@ -12,12 +13,10 @@ const router = express.Router();
 router.route("/create").post(authMiddleware, createCategoryController);
 
 // GET ALL CATEGORIES
-router.route("/getAll").get()
+router.route("/getAll").get(getAllCategoriesController);
 
 // UPDATE CATEGORY
-router.route("/")
+router.route("/");
 
 // EXPORTS
 module.exports = router;
-
-

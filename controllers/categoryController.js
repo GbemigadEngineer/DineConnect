@@ -47,6 +47,21 @@ const createCategoryController = async (req, res) => {
 // GET ALL CATEGORIES CONTROLLER
 const getAllCategoriesController = async (req, res) => {
   try {
+    // 1. Get all categories from the database using mongoose find method
+    const features = new APIFeatures(Category.find(), req.query)
+      .filter()
+      .sort()
+      .limitFields()
+      .paginate();
+    const categories = await features.query;
+    // 2. Send response after getting all categories
+    res.status(200).json({
+      success: true,
+      message: "All Categories fetched successfully!",
+      data: {
+        categories,
+      },
+    });
   } catch (error) {
     console.log(error);
     res.status(500).json({
@@ -59,4 +74,5 @@ const getAllCategoriesController = async (req, res) => {
 // EXPORT CONTROLLER
 module.exports = {
   createCategoryController,
+  getAllCategoriesController,
 };
